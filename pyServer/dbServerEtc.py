@@ -65,7 +65,7 @@ class TestAppHandler (EasyHTTPHandler):
     # -------------------- DEFINE YOUR APIs BELOW-------------------------
 
 
-    def EtcApi(self, req, qstr):
+    def NIRC2EtcApi(self, req, qstr):
 
         #create api object
         api = EtcApi.EtcApi()
@@ -102,7 +102,37 @@ class TestAppHandler (EasyHTTPHandler):
         else:
             return self.response(json.dumps(result), self.PlainTextType)
 
+    def NIRESEtcApi(self, req, qstr):
 
+        #create api object
+        api = EtcApi.EtcApi()
+
+        #get command
+        cmd = self.getDefValue(qstr, 'cmd', None)
+        if cmd == None: return self.response(api.show_usage(), self.HTMLType)
+
+        #assign default values from URL parameters
+        api.output      = self.getDefValue(qstr, 'output',      'txt')
+        api.instr       = self.getDefValue(qstr, 'instr',       None)
+
+        #---NIRC2 specific inputs---
+        api.mag_src   = self.getDefValue(qstr, 'mag_src',   None)
+        api.exp_time    = self.getDefValue(qstr, 'exp_time',    None)
+        api.coadds      = self.getDefValue(qstr, 'coadds',      None)
+        api.dither    = self.getDefValue(qstr, 'dither',    None)
+        api.dith_repeats = self.getDefValue(qstr, 'dith_repeats', None)
+        api.num_read    = self.getDefValue(qstr, 'num_read',    None)
+        api.seeing      = self.getDefValue(qstr, 'seeing', None)
+        api.water_vap_col = self.getDefValue(qstr, 'water_vap_col', None)
+
+
+        # Call the api method and send return contents to browser
+        cmdToCall = getattr(api, cmd)
+        result = cmdToCall()
+        if api.output == 'txt' or api.output == 'html':
+            return self.response(result, self.HTMLType)
+        else:
+            return self.response(json.dumps(result), self.PlainTextType)
 
     def TestApi(self, req, qstr):
 

@@ -33,7 +33,7 @@ function getExposureData_NIRES()
     
     //send query via ajax
     //todo: use config var and/or change this when we establish permanent server
-    ajaxGet("EtcApi", params, onGetExposureData_NIRES);
+    ajaxGet("NIRESEtcApi", params, onGetExposureData_NIRES);
 }
 
 

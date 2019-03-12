@@ -40,7 +40,7 @@ function getExposureData_NIRC2()
     
     //send query via ajax
     //todo: use config var and/or change this when we establish permanent server
-    ajaxGet("EtcApi", params, onGetExposureData_NIRC2);
+    ajaxGet("NIRC2EtcApi", params, onGetExposureData_NIRC2);
 }
 
 
