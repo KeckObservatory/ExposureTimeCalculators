@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>NIRC2 SNR and Efficiency Calculator</title>
+<script src="ajax.js"></script>
+<script src="etc_nirc2.js"></script>
+</head>
+
+<body>
+
+
+<h1><u>NIRC2 SNR and Efficiency Calculator</u></h1>
+<table>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Magnitude: </th>
+        <td><input type="text" name="magnitude" id="magnitude" value="20.0" size="5"></td>
+        <th align="left" bgcolor="lightgrey">Strehl: </th>
+        <td><input type="text" name="strehl" id="strehl" value="0.3" size="5"></td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Time per exposure (tint): </th>
+        <td><input type="text" name="exp_time" id="exp_time" value="10" size="5"></td>
+        <th align="left" bgcolor="lightgrey">Coadds: </th>
+        <td><input type="text" name="coadds" id="coadds" value="10" size="5"></td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">N dithers: </th>
+        <td><input type="text" name="num_dith" id="num_dith" value="5" size="5"></td>
+        <th align="left" bgcolor="lightgrey">Repeats per dither: </th>
+        <td><input type="text" name="num_repeats" id="num_repeats" value="1" size="5"></td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Camera: </th>
+        <td colspan="3">
+            <input type="radio" name="camera" id="camera" value="narrow" checked>Narrow
+            <input type="radio" name="camera" id="camera" value="wide">Wide
+        </td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Filter: </th>
+        <td colspan="3">
+            <input type="radio" name="img_filter" value="J">J
+            <input type="radio" name="img_filter" value="H">H
+            <input type="radio" name="img_filter" value="K">K
+            <input type="radio" name="img_filter" value="Kp" checked>Kp
+            <input type="radio" name="img_filter" value="Lp">Lp
+            <input type="radio" name="img_filter" value="Ms">Ms
+        </td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">N Reads: </th>
+        <td colspan="3">
+            <input type="radio" name="num_read" value="2" checked>2 (CDS)
+            <input type="radio" name="num_read" value="8">8
+            <input type="radio" name="num_read" value="16">16
+            <input type="radio" name="num_read" value="32">32
+            <input type="radio" name="num_read" value="64">64
+            <input type="radio" name="num_read" value="128">128 (MCDS)
+        </td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Array Window Size: </th>
+        <td colspan="3">
+            <input type="radio" name="extent" value="1024" checked>1024^2
+            <input type="radio" name="extent" value="512">512^2
+            <input type="radio" name="extent" value="256">256^2
+        </td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">AO Mode: </th>
+        <td colspan="3">
+            <input type="radio" name="ao_mode" value="1">LGS
+            <input type="radio" name="ao_mode" value="0" checked>NGS
+        </td>
+    </tr>
+    <tr>
+        <th align="left" bgcolor="lightgrey">Laser Motion Control: </th>
+        <td colspan="3">
+            <input type="radio" name="laser_dith" value="0">Fixed to center of image
+            <input type="radio" name="laser_dith" value="1" checked>Dither to object
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" align="right">
+            <button style="background-color:#00FF00" onClick="getExposureData_NIRC2()">Update Calculation</button>
+        </td>
+    </tr>
+</table>
+</p>
+<table>
+    <tr>
+        <td width='400px'>
+            <div name="snr_container" id="snr_container" style="color:#FF0000;font-size:16pt;">
+                <div name="snr_div" id="snr_div"><h3>SNR = n/a</h3></div>
+                <div name="total_signal_div" id="total_signal_div">Total signal = n/a</div>
+                <div name="aperture_area_div" id="aperture_area_div">Aperture area = n/a</div>
+                <div name="total_noise_div" id="total_noise_div">Total noise = n/a</div>
+                <div name="bg_per_frame_div" id="bg_per_frame_div">Background per frame = n/a</div>
+            </div>
+        </td>
+        <td>
+            <div name="eff_container" id="eff_container" style="color:#0000FF;font-size:16pt;">
+                <div name="eff_div" id="eff_div"><h3>Efficiency = n/a</h3></div>
+                <div name="ao_overhead_div" id="ao_overhead_div">AO/Tel overhead = n/a</div>
+                <div name="nirc2_overhead_div" id="nirc2_overhead_div">NIRC2 overhead = n/a</div>
+                <div name="total_int_div" id="total_int_div">Total integration = n/a</div>
+                <div name="total_time_div" id="total_time_div">Total elapsed time = n/a</div>
+                <div name="test" id="test"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>

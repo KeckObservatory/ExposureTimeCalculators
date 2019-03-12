@@ -1,0 +1,60 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+<title>NIRES SNR and Efficiency Calculator</title>
+<script src="ajax.js"></script>
+<script src="etc_nires.js"></script>
+</head>
+
+<center>
+<h1>Exposure Time Calculator</h1>
+</center>
+
+<h2 class="lightoverdark">NIRES ETC (test)</h2> 
+<p>
+  This is a test version for NIRES ETC. This works for pointsources and outputs S/N. Fill the input parameters below<br>
+
+<form>
+  Target Magnitude (Vega)<br>
+  <input type="number" step="0.01" name="mag_src" id="mag_src" value="15"><br>
+  Exposure Time (s)<br>
+  <input type="number" step="0.01" name="exp_time" id="exp_time" value="100"><br>
+  Coadds <br>
+  <input type="number" name="coadds" id="coadds" value="3"><br>
+  Dither Pattern <br>
+  <input type="radio" name="dither" id="dither" value="ab" checked> AB<br>
+  <input type="radio" name="dither" id="dither" value="abba"> ABBA<br>
+  Dither Repeats <br>
+  <input type="number" name="dith_repeat" id="dith_repeat" value="2"><br>
+  Number of Reads <br>
+  <input type="radio" name="num_reads" id="num_read" value="2" checked> 2<br>
+  <input type="radio" name="num_reads" id="num_read" value="16"> 16<br>
+  Wavelength of Interest (micron) <br>
+  <input type="number" step="0.01" name="obs_wave" id="obs_wave" min="1.1" max="2.5" value="1.5"><br>
+  Seeing (arcsec) <br>
+  <input type="number" step="0.01" name="seeing" id="seeing" value="0.7"><br>
+  Airmass <br>
+  <input type="number" step="0.01" name="airmass" id="airmass" value="1.5"><br>
+  Water Vapor Column <br>
+  <input type="radio" name="water_vap_col" id="water_vap_col" value="1.0" checked> 1.0 mm<br>
+  <input type="radio" name="water_vap_col" id="water_vap_col" value="1.6"> 1.6 mm<br>
+  <input type="radio" name="water_vap_col" id="water_vap_col" value="3.0"> 3.0 mm<br>
+  <input type="radio" name="water_vap_col" id="water_vap_col" value="5.0"> 5.0 mm<br>
+  <br>
+ <!--  <input type="radio" name="water_vap_col" id="water_vap_col" value="1.6"> 1.6 mm<br> -->
+ <!--  <input type="radio" name="water_vap_col" id="water_vap_col" value="3.0"> 3.0 mm<br> -->
+ <!--  <input type="radio" name="water_vap_col" id="water_vap_col" value="5.0"> 5.0 mm<br> -->
+
+  <button style="..." onClick="getExposureData_NIRES()">Update Calculation</button>
+</form>
+</p>
+
+<p>
+<form>
+ <div name="snr_div" id="snr_div"><h3>SNR = n/a</h3></div> 
+
+</form>  
+
+</p>
+
+</html>
